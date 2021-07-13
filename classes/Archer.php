@@ -29,7 +29,7 @@ class Archer extends Character{
   public function arrow($target){
     //s'il a encore de flèches
     if ($this->arrowNumber > 0) {
-      // si est en train de viser un point faible
+      // s'il est en train de viser un point faible
       if ($this->isAiming == true) {
         $aimingDamage = $this->damage * rand(15,30)/10;
         $target->setHealthPoints($aimingDamage);
