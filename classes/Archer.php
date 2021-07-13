@@ -5,6 +5,7 @@ class Archer extends Character{
   private $arrowNumber = 3; //numéros de flèches on peut dire que c'est le carquois
   private $daggerDamage;
   private $isAiming = false; //attribut viser un point faible initialisé comme inactif
+  private $isTwoArrows = false; //attribut qui inactif pour tirer deux flèches
 
 
   public function __construct($name){
@@ -64,6 +65,12 @@ class Archer extends Character{
   public function dagger($target){
     $target->setHealthPoints($this->daggerDamage);
     $status = "$this->name attaque avec sa dague à $target->name! Il reste $target->healthPoints de vie à $target->name";
+    return $status;
+  }
+  //fonction tirer deux flèches au tour suivant
+  public function twoArrows(){
+    $this->isTwoArrows = true;
+    $status = "$this->name va tirer deux flèches au tour suivant";
     return $status;
   }
 
