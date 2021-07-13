@@ -2,7 +2,7 @@
 
 class Archer extends Character{
 
-  private $arrowNumber = 3; //numéros de flèches on peut dire que c'est le carquois
+  private $arrowNumber = 6; //numéros de flèches on peut dire que c'est le carquois
   private $daggerDamage;
   private $isAiming = false; //attribut viser un point faible initialisé comme inactif
   private $isTwoArrows = false; //attribut qui inactif pour tirer deux flèches
@@ -16,14 +16,21 @@ class Archer extends Character{
 
   public function turn($target){
     $rand = rand (1,10);
+    if ($this->isTwoArrows == true) {
+      $status = "$this->name essaye de tirer deux flèches:". $this->arrow($target)."<br>". $this->arrow($target);
+      $this->isTwoArrows = false;
 
-    if($rand <= 6 || $this->isAiming == true){
+    } else if($rand <= 6 || $this->isAiming == true){
        //Chance de 60% de tirer une flèche
       $status = $this->arrow($target);
 
-    } else if ($rand > 6){
+    } else if ($rand > 6 && $rand <= 8){
       //il vise un point faible mais il n'attaque pas dans ce tour
       $status = $this->aimWeakPoint();
+
+    }else{
+      //le restant 20% de chance il peut lancer deux flèches
+      $status = $this->twoArrows();
     }
     return $status;
   }
