@@ -16,11 +16,12 @@ class Archer extends Character{
 
   public function turn($target){
     $rand = rand (1,10);
-    //Chance de 60% de tirer une flèche
-    if ($rand <= 6 || $this->isAiming == true){
+
+    if($rand <= 6 || $this->isAiming == true){
+       //Chance de 60% de tirer une flèche
       $status = $this->arrow($target);
 
-    }else if ($rand > 4){
+    } else if ($rand > 6){
       //il vise un point faible mais il n'attaque pas dans ce tour
       $status = $this->aimWeakPoint();
     }
